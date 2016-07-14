@@ -1,28 +1,14 @@
-import {provideRouter, RouterConfig} from '@angular/router';
-import {HeroesComponent} from './heroes.component';
-import {DashboardComponent} from './dashboard.component';
-import {HeroDetailComponent} from './hero-detail.component';
+import {provideRouter, RouterConfig}	from '@angular/router';
+import {participantRoutes}					from './participants/participants.routes';
+import {speakerRoutes}						from './speakers/speakers.routes';
 
-const routes: RouterConfig = [
-	{
-		path: '',
-		redirectTo: '/dashboard',
-		pathMatch: 'full'
-	},
-	{
-		path: 'heroes',
-		component: HeroesComponent
-	},
-	{
-		path: 'dashboard',
-		component: DashboardComponent
-	},
-	{
-		path: 'detail/:id',
-		component: HeroDetailComponent
-	}
+
+const allRoutes: RouterConfig = [
+    ...participantRoutes,
+    ...speakerRoutes,
+    {path: '', redirectTo: '/speakers', pathMatch:'full'}
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-	provideRouter(routes)
+export const appRouteProviders = [
+	provideRouter(allRoutes)
 ];
