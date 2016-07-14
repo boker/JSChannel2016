@@ -1,0 +1,7 @@
+<form (ngSubmit)="Save()" #speakerForm="ngForm">
+	<div>
+		<span>{{speaker.id}}</span>
+		<input type="text" [(ngModel)]="speaker.name" ngControl="speakerName" required/>
+	</div>
+	<button type="submit" [disabled]="!speakerForm.form.valid">Save</button>
+</form>

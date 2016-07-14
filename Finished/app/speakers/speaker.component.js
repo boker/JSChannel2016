@@ -9,16 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var speaker_service_1 = require('./speaker.service');
 var SpeakerComponent = (function () {
-    function SpeakerComponent() {
+    function SpeakerComponent(route, speakerService) {
+        this.route = route;
+        this.speakerService = speakerService;
+        this.saveSpeaker = new core_1.EventEmitter();
     }
+    SpeakerComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscription = this.route.params.subscribe(function (params) {
+            var id = +params['id'];
+            _this.speakerService.getSpeaker(id)
+                .then(function (speaker) { return _this.speaker = speaker; });
+        });
+    };
+    SpeakerComponent.prototype.save = function (speaker) {
+        this.saveSpeaker.emit(this.speaker);
+    };
+    SpeakerComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unSubscribe();
+    };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], SpeakerComponent.prototype, "saveSpeaker", void 0);
     SpeakerComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'speaker',
-            templateUrl: 'speaker.component.html'
+            templateUrl: 'speaker.component.html',
+            providers: [router_1.ActivatedRoute, speaker_service_1.SpeakerService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, speaker_service_1.SpeakerService])
     ], SpeakerComponent);
     return SpeakerComponent;
 }());
