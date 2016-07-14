@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var speaker_service_1 = require('./speaker.service');
+var router_1 = require('@angular/router');
 var SpeakerListComponent = (function () {
-    function SpeakerListComponent(speakerService) {
+    function SpeakerListComponent(speakerService, router) {
         this.speakerService = speakerService;
+        this.router = router;
         this.speakers = [];
     }
     SpeakerListComponent.prototype.ngOnInit = function () {
@@ -22,7 +24,7 @@ var SpeakerListComponent = (function () {
     };
     SpeakerListComponent.prototype.showSpeakerDetail = function (speaker) {
         console.log(speaker);
-        //router.navigate
+        this.router.navigate(['./speakers', speaker.id]);
     };
     SpeakerListComponent = __decorate([
         core_1.Component({
@@ -31,7 +33,7 @@ var SpeakerListComponent = (function () {
             templateUrl: 'speakerlist.component.html',
             providers: [speaker_service_1.SpeakerService]
         }), 
-        __metadata('design:paramtypes', [speaker_service_1.SpeakerService])
+        __metadata('design:paramtypes', [speaker_service_1.SpeakerService, router_1.Router])
     ], SpeakerListComponent);
     return SpeakerListComponent;
 }());

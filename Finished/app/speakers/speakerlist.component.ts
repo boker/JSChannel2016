@@ -1,7 +1,7 @@
 import {Component, OnInit}    from  '@angular/core';
 import {SpeakerService}			from	'./speaker.service';
 import {Speaker}					from	'./speaker';
-import {ActivatedRoute}			from  '@angular/router';
+import {Router}					from  '@angular/router';
 
 @Component({
    selector: 'speakers',
@@ -12,7 +12,7 @@ import {ActivatedRoute}			from  '@angular/router';
 export class SpeakerListComponent implements OnInit{
     public speakers:Speaker[]=[];
 
-    constructor(private speakerService: SpeakerService){}
+    constructor(private speakerService: SpeakerService, private router: Router){}
 
     ngOnInit(){
     	this.speakerService.getSpeakers()
@@ -21,6 +21,6 @@ export class SpeakerListComponent implements OnInit{
 
     showSpeakerDetail(speaker: Speaker){
     	console.log(speaker);
-    	//router.navigate
+    	this.router.navigate(['./speakers', speaker.id]);
     }
 }

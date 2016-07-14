@@ -15,6 +15,7 @@ var SpeakerComponent = (function () {
     function SpeakerComponent(route, speakerService) {
         this.route = route;
         this.speakerService = speakerService;
+        this.speaker = { name: 'tmp' };
         this.saveSpeaker = new core_1.EventEmitter();
     }
     SpeakerComponent.prototype.ngOnInit = function () {
@@ -22,11 +23,17 @@ var SpeakerComponent = (function () {
         this.subscription = this.route.params.subscribe(function (params) {
             var id = +params['id'];
             _this.speakerService.getSpeaker(id)
-                .then(function (speaker) { return _this.speaker = speaker; });
+                .then(function (speaker) {
+                _this.speaker = speaker;
+                console.log(speaker);
+            });
         });
     };
     SpeakerComponent.prototype.save = function (speaker) {
         this.saveSpeaker.emit(this.speaker);
+    };
+    SpeakerComponent.prototype.goBack = function () {
+        window.history.back();
     };
     SpeakerComponent.prototype.ngOnDestroy = function () {
         this.subscription.unSubscribe();
@@ -40,7 +47,7 @@ var SpeakerComponent = (function () {
             moduleId: module.id,
             selector: 'speaker',
             templateUrl: 'speaker.component.html',
-            providers: [router_1.ActivatedRoute, speaker_service_1.SpeakerService]
+            providers: [speaker_service_1.SpeakerService]
         }), 
         __metadata('design:paramtypes', [router_1.ActivatedRoute, speaker_service_1.SpeakerService])
     ], SpeakerComponent);

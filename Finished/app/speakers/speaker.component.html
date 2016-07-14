@@ -2,6 +2,8 @@
 	<div>
 		<span>{{speaker.id}}</span>
 		<input type="text" [(ngModel)]="speaker.name" ngControl="speakerName" required/>
+		<div>{{speaker.name}}</div>
 	</div>
 	<button type="submit" [disabled]="!speakerForm.form.valid">Save</button>
+	<button (click)="goBack()">Back</button>
 </form>
