@@ -11,7 +11,7 @@ import {SpeakerService} from './speaker.service';
    providers: [SpeakerService]
 })
 export class SpeakerComponent implements OnInit{
-   public speaker: Speaker = {name: 'tmp'};
+   public speaker: Speaker = {id:0, name: 'tmp'};
    subscription: any;
 
    constructor(private route: ActivatedRoute, 
@@ -39,6 +39,6 @@ export class SpeakerComponent implements OnInit{
    }
 
    ngOnDestroy(){
-   	this.subscription.unSubscribe();
+   	this.subscription.unsubscribe();
    }
 }

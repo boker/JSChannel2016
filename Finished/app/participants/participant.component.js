@@ -9,13 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var participant_1 = require('./participant');
 var ParticipantComponent = (function () {
     function ParticipantComponent() {
+        this.OnSave = new core_1.EventEmitter();
     }
+    ParticipantComponent.prototype.ngOnInit = function () {
+        this.editableParticipant = JSON.parse(JSON.stringify(this.participant));
+    };
+    ParticipantComponent.prototype.Save = function () {
+        this.OnSave.emit(this.participant);
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', participant_1.Participant)
+    ], ParticipantComponent.prototype, "participant", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], ParticipantComponent.prototype, "OnSave", void 0);
     ParticipantComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'participant',
+            selector: 'participant-detail',
             templateUrl: 'participant.component.html'
         }), 
         __metadata('design:paramtypes', [])

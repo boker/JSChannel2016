@@ -1,1 +1,8 @@
-This is an excercise for you. Can yoi show a list of participants here?
+<div *ngFor="let participant of participants">
+	<div (click)="selectParticipant(participant)">{{participant.name}}, {{participant.emailId}}</div>
+	<br>
+</div>
+<br>
+<div *ngIf="selectedParticipant">
+	<participant-detail [participant]="selectedParticipant" (OnSave)="SaveParticipant($event)"></participant-detail>
+</div>

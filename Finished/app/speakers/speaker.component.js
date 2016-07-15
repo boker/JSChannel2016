@@ -15,7 +15,7 @@ var SpeakerComponent = (function () {
     function SpeakerComponent(route, speakerService) {
         this.route = route;
         this.speakerService = speakerService;
-        this.speaker = { name: 'tmp' };
+        this.speaker = { id: 0, name: 'tmp' };
         this.saveSpeaker = new core_1.EventEmitter();
     }
     SpeakerComponent.prototype.ngOnInit = function () {
@@ -36,7 +36,7 @@ var SpeakerComponent = (function () {
         window.history.back();
     };
     SpeakerComponent.prototype.ngOnDestroy = function () {
-        this.subscription.unSubscribe();
+        this.subscription.unsubscribe();
     };
     __decorate([
         core_1.Output(), 

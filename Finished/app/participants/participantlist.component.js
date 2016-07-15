@@ -9,16 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var participant_service_1 = require('./participant.service');
+var participant_component_1 = require('./participant.component');
 var ParticipantListComponent = (function () {
-    function ParticipantListComponent() {
+    function ParticipantListComponent(participantService) {
+        this.participantService = participantService;
     }
+    ParticipantListComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.participantService.getParticipants()
+            .then(function (participants) { return _this.participants = participants; });
+    };
+    ParticipantListComponent.prototype.selectParticipant = function (participant) {
+        this.selectedParticipant = participant;
+    };
+    ParticipantListComponent.prototype.SaveParticipant = function (participant) {
+        console.log('the participant to save is - ' + participant.name);
+    };
     ParticipantListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'participants',
-            templateUrl: 'participantlist.component.html'
+            templateUrl: 'participantlist.component.html',
+            providers: [participant_service_1.ParticipantService],
+            directives: [participant_component_1.ParticipantComponent]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [participant_service_1.ParticipantService])
     ], ParticipantListComponent);
     return ParticipantListComponent;
 }());

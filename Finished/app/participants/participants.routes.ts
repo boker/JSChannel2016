@@ -1,8 +1,6 @@
-import {RouterConfig}		                 from	'@angular/router';
-import {ParticipantListComponent}			from 	'./participantlist.component';
-import {ParticipantComponent}				from	'./participant.component';
+import {RouterConfig}		            from	'@angular/router';
+import {ParticipantListComponent}		from 	'./participantlist.component';
 
 export const participantRoutes: RouterConfig= [
-	{path: 'participants', component: ParticipantListComponent },
-    {path: 'participants/:id', component: ParticipantComponent}
+	{path: 'participants', component: ParticipantListComponent }
 ];
